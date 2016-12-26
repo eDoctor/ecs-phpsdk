@@ -15,10 +15,10 @@ $redis = new Redis();
 $redis->connect('127.0.0.1', '6379');
 
 $config = [
-    'api_server'    => env('ECS_API_SERVER', ''),
-    'api_key'       => env('ECS_API_KEY', ''),
-    'api_secret'    => env('ECS_API_SECRET', ''),
-    'max_timeout'   => env('MAX_TIMEOUT', 3600)
+    'api_server'    => '',
+    'api_key'       => '',
+    'api_secret'    => '',
+    'max_timeout'   => 60
 ];
 $phpecs = new Phpecs($config, $redis);
 
@@ -41,16 +41,18 @@ eDoctor\Phpecs\PhpecsProvider::class,
 ```
 php artisan vendor:publish
 ```
-在 .env 文件中增加配置选项, 它会被自动调用.
+3. 在 .env 文件中增加配置选项, 它会被自动调用.
 ```
 ECS_API_SERVER=
 ECS_API_KEY=
 ECS_API_SECRET=
 MAX_TIMEOUT=3600
 ```
+```
 当然也可以直接修改 config/phpecs.php (不推荐)
+```
 
-3. 在控制器中自动注入
+4. 在控制器中实现自动注入
 ```
 class UserController extends Controller
 {
@@ -71,4 +73,7 @@ class UserController extends Controller
 
 # 接口列表
 整理中...
-# 技术.cn
+(可参照IDE自动提示)
+
+# 技术支持
+weipeng.wen@edoctor.cn
