@@ -33,15 +33,15 @@ $response = $userLogin->getResponse();
 ```
 
 ##### For Laravel:
-- 编辑 config/app.php 在 providers 数组追加:
+1. **编辑 config/app.php 在 providers 数组追加:**
 ```
 eDoctor\Phpecs\PhpecsProvider::class,
 ```
-- 发布配置文件:
+2. **发布配置文件到 config/phpecs.php**
 ```
 php artisan vendor:publish
 ```
-- 在 .env 文件中增加配置选项, 它会被自动调用.
+3. **在 .env 文件中增加配置选项, 它会被自动调用**
 ```
 ECS_API_SERVER=
 ECS_API_KEY=
@@ -51,7 +51,7 @@ MAX_TIMEOUT=3600
 ```
 当然也可以直接修改 config/phpecs.php (不推荐)
 ```
-- 在控制器中实现自动注入
+4. **在控制器中实现自动注入**
 ```
 class UserController extends Controller
 {
