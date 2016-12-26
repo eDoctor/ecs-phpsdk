@@ -1,0 +1,26 @@
+{
+  "name": "edoctor/ecs-phpsdk",
+  "description": "PHP-SDK for eCloudSystem",
+  "type": "library",
+  "keywords": [
+    "ECS SDK"
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "ext-redis": "*",
+    "wenpeng/curl": "*",
+    "predis/predis": "*"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Wenpeng",
+      "email": "imwwp@outlook.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "eDoctor\\Phpecs\\": "src/"
+    }
+  }
+}
