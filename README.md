@@ -1,12 +1,13 @@
-# PHP-SDK for eCloudSystem
-# 安装部署
-### 安装方法:
+## 安装部署
+
 ```
 composer require edoctor/ecs-phpsdk
 ```
-### 使用方法
-##### 通用方法
-```
+## 使用说明
+
+#### 接入通用项目
+
+```php
 use Redis;
 use eDoctor\Phpecs\Phpecs;
 use eDoctor\Phpecs\Request\User\Login as UserLogin;
@@ -32,27 +33,34 @@ $userLogin->setPlatform('android');
 $response = $userLogin->getResponse();
 ```
 
-##### For Laravel:
-1. **编辑 config/app.php 在 providers 数组追加:**
-```
+
+
+#### For Laravel:
+
+**编辑 config/app.php 在 providers 数组追加:**
+
+```php
 eDoctor\Phpecs\PhpecsProvider::class,
 ```
-2. **发布配置文件到 config/phpecs.php**
-```
+**发布配置文件到 config/phpecs.php**
+
+```shell
 php artisan vendor:publish
 ```
-3. **在 .env 文件中增加配置选项, 它会被自动调用**
-```
+**在 .env 文件中增加配置选项, 它会被自动调用**
+
+```ini
 ECS_API_SERVER=
 ECS_API_KEY=
 ECS_API_SECRET=
-MAX_TIMEOUT=3600
+MAX_TIMEOUT=60
 ```
 ```
 当然也可以直接修改 config/phpecs.php (不推荐)
 ```
-4. **在控制器中实现自动注入**
-```
+**在控制器中实现自动注入**
+
+```php
 class UserController extends Controller
 {
     public function login(Request $request, Phpecs $phpecs)

@@ -51,6 +51,11 @@ class PhpecsValidator
         return preg_match('/^[\S]{1,20}$/', $val) === 1;
     }
 
+    public static function isUrl($val)
+    {
+        return filter_var($val, FILTER_VALIDATE_URL) !== false;
+    }
+
     public static function isEmail($val)
     {
         return filter_var($val, FILTER_VALIDATE_EMAIL) !== false;
