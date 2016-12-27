@@ -41,7 +41,7 @@ class QrcodeFetch extends PhpecsRequest
         }
         $roleOptions = (array) $this->roleOptions;
         foreach ($roleOptions as $index => $roleOption) {
-            if (Valid::isRole($index)) {
+            if (Valid::isRole($index) === false) {
                 throw new PhpecsException('角色编号未设置或者存在无效值');
             }
         }

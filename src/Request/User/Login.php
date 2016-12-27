@@ -89,7 +89,7 @@ class Login extends PhpecsRequest
     public function getResponse()
     {
         $methodArr = ['email', 'mobile', 'wechat'];
-        if (in_array($this->authMethod, $methodArr)) {
+        if (in_array($this->authMethod, $methodArr) === false) {
             throw new PhpecsException('认证方法未设置或值无效');
         }
         if ($this->authMethod === 'wechat') {
@@ -102,10 +102,10 @@ class Login extends PhpecsRequest
             if (Valid::isWechatId($this->unionId) === false) {
                 throw new PhpecsException('UNIONID未设置或值无效');
             }
-            if (Valid::isNickname($this->nickname)) {
+            if (Valid::isNickname($this->nickname) === false) {
                 throw new PhpecsException('用户昵称未设置或值无效');
             }
-            if (Valid::isLanguage($this->language)) {
+            if (Valid::isLanguage($this->language) === false) {
                 throw new PhpecsException('语言类型未设置或值无效');
             }
         } else {
