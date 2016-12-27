@@ -2,7 +2,7 @@
 /**
  * Author: Wenpeng
  * Email: imwwp@outlook.com
- * Time: 16/11/17 下午3:57
+ * Time: 16/12/27 下午3:53
  */
 
 namespace eDoctor\Phpecs\Request\Cfs;
@@ -10,15 +10,14 @@ namespace eDoctor\Phpecs\Request\Cfs;
 use eDoctor\Phpecs\PhpecsRequest;
 use eDoctor\Phpecs\PhpecsException;
 
-class ImageUpload extends PhpecsRequest
+class ZipUpload extends PhpecsRequest
 {
-    private $api = 'cfs/v1/upload/image';
+    private $api = 'cfs/v1/upload/zip';
 
     private $path = '';
     private $mime = '';
     private $name = '';
-    private $thumb = [];
-    private $option = '';
+    private $preheat = [];
 
     public function setPath($val)
     {
@@ -35,18 +34,13 @@ class ImageUpload extends PhpecsRequest
         $this->name = (string) $val;
     }
 
-    public function setThumb($val)
+    public function setPreheat($val)
     {
         if (is_array($val)) {
-            $this->thumb = array_merge($this->thumb, $val);
+            $this->preheat = array_merge($this->preheat, $val);
         } else {
-            $this->thumb[] = (string) $val;
+            $this->preheat[] = (string) $val;
         }
-    }
-
-    public function setOption($val)
-    {
-        $this->option = (string) $val;
     }
 
     public function getResponse()
@@ -60,15 +54,14 @@ class ImageUpload extends PhpecsRequest
         if ($this->name === '') {
             throw new PhpecsException('文件名称未设置或值无效');
         }
-        return $this->client->request($this->api, [
-            'thumb' => $this->thumb,
-            'option' => $this->option
-        ], [
+
+        return $this->client->request($this->api, [], [
             'file' => [
                 'path' => $this->path,
                 'mime' => $this->mime,
                 'name' => $this->name
-            ]
+            ],
+            'preheat' => $this->preheat
         ]);
     }
 }

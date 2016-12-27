@@ -2,7 +2,7 @@
 /**
  * Author: Wenpeng
  * Email: imwwp@outlook.com
- * Time: 16/12/26 下午4:21
+ * Time: 16/12/27 下午4:01
  */
 
 namespace eDoctor\Phpecs\Request\Cfs;
@@ -10,10 +10,9 @@ namespace eDoctor\Phpecs\Request\Cfs;
 use eDoctor\Phpecs\PhpecsRequest;
 use eDoctor\Phpecs\PhpecsException;
 
-class HashUpload extends PhpecsRequest
+class ZipView extends PhpecsRequest
 {
-    private $api = 'cfs/v1/upload/hash';
-
+    private $api = 'cfs/v1/view/zip';
     private $hash = '';
 
     public function setHash($val)
