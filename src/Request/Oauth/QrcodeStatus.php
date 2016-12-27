@@ -15,13 +15,7 @@ class QrcodeStatus extends PhpecsRequest
 {
     private $api = 'oauth/v1/qrcode/status';
 
-    private $userAccessToken;
     private $oauthQrcodeToken;
-
-    public function setUserAccessToken($val)
-    {
-        $this->userAccessToken = (string) $val;
-    }
 
     public function setOauthQrcodeToken($val)
     {
@@ -30,15 +24,11 @@ class QrcodeStatus extends PhpecsRequest
 
     public function getResponse()
     {
-        if (Valid::isToken($this->userAccessToken) === false) {
-            throw new PhpecsException('用户令牌未设置或者格式错误');
-        }
         if (Valid::isToken($this->oauthQrcodeToken) === false) {
             throw new PhpecsException('扫码令牌未设置或者格式错误');
         }
 
         return $this->client->request($this->api, [
-            'user_access_token' => $this->userAccessToken,
             'oauth_qrcode_token' => $this->oauthQrcodeToken
         ]);
     }
