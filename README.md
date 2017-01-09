@@ -19,7 +19,7 @@ $config = [
     'api_server'    => '',
     'api_key'       => '',
     'api_secret'    => '',
-    'max_timeout'   => 60
+    'request_timeout'   => 60
 ];
 $phpecs = new Phpecs($config, $redis);
 
@@ -53,7 +53,7 @@ php artisan vendor:publish
 ECS_API_SERVER=
 ECS_API_KEY=
 ECS_API_SECRET=
-MAX_TIMEOUT=60
+ECS_REQUEST_TIMEOUT=60
 ```
 ```
 当然也可以直接修改 config/phpecs.php (不推荐)

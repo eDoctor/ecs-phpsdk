@@ -32,7 +32,7 @@ class Phpecs
         $this->key = (string) $config['api_key'];
         $this->secret = (string) $config['api_secret'];
         $this->server = trim($config['api_server'], '/');
-        $this->timeout = abs((int) $config['max_timeout']);
+        $this->timeout = (int) $config['request_timeout'];
 
         $this->redis = $redis;
     }

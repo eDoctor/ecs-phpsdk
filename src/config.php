@@ -9,5 +9,5 @@ return [
     'api_server'    => env('ECS_API_SERVER', ''),
     'api_key'       => env('ECS_API_KEY', ''),
     'api_secret'    => env('ECS_API_SECRET', ''),
-    'max_timeout'   => env('MAX_TIMEOUT', 3600)
+    'request_timeout'   => env('ECS_REQUEST_TIMEOUT', 3600)
 ];
