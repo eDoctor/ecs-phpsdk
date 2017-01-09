@@ -45,7 +45,7 @@ eDoctor\Phpecs\PhpecsProvider::class,
 **发布配置文件到 config/phpecs.php**
 
 ```shell
-php artisan vendor:publish
+php artisan vendor:publish --provider="eDoctor\Phpecs\PhpecsProvider" --tag=config
 ```
 **在 .env 文件中增加配置选项, 它会被自动调用**
 
