@@ -15,9 +15,21 @@ class QrcodeFetch extends PhpecsRequest
 {
     private $api = 'oauth/v1/qrcode/fetch';
 
+    private $icon;
+    private $title;
     private $prefix;
     private $platform;
     private $roleOptions;
+
+    public function setIcon($val)
+    {
+        $this->icon = (string) $val;
+    }
+
+    public function setTitle($val)
+    {
+        $this->title = (string) $val;
+    }
 
     public function setPrefix($val)
     {
@@ -36,9 +48,16 @@ class QrcodeFetch extends PhpecsRequest
 
     public function getResponse()
     {
+        if (Valid::isUrl($this->icon) === false) {
+            throw new PhpecsException('应用图标未设置或者格式错误');
+        }
+        if ($this->title === '') {
+            throw new PhpecsException('应用标题未设置或者格式错误');
+        }
         if (Valid::isPlatform($this->platform) === false) {
             throw new PhpecsException('终端类型未设置或者格式错误');
         }
+
         $roleOptions = (array) $this->roleOptions;
         foreach ($roleOptions as $index => $roleOption) {
             if (Valid::isRole($index) === false) {
@@ -47,6 +66,8 @@ class QrcodeFetch extends PhpecsRequest
         }
 
         return $this->client->request($this->api, [
+            'icon' => $this->icon,
+            'title' => $this->title,
             'prefix' => $this->prefix,
             'platform' => $this->platform,
             'role_options' => json_encode($roleOptions),
